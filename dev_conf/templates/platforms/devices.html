@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html>
+    <head>
+        <title>Devices</title>
+       <style>
+           table, th, td {
+           border: 1px solid black;
+           border-collapse:collapse;
+           padding:5px;}
+        </style>
+    </head>
+
+    <body>
+        <h1>Devices</h1>
+        {% if devices %}
+          <table>
+            <tr>
+              <th>Type</th>
+              <th>Mac</th>
+              <th>IP</th>
+              <th>Platform</th>
+            </tr>
+            {% for device in devices %}
+                <tr>
+                  <td>{{ device.type }}</td>
+                  <td>{{ device.mac }}</td>
+                  <td>{{ device.ip }}</td>
+                  <td>{{ device.platform }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        {% else %}
+             <strong>There are no Devices present.</strong><br />
+        {% endif %}
+        <br />
+       <a href="/Platform">Platform</a><br />
+       <a href="/Platform/about/">About</a><br />
+
+    </body>
+</html>

@@ -3,16 +3,39 @@
 {% load static %}
 
 <html>
-
     <head>
         <title>Platforms</title>
+       <style>
+           table, th, td {
+           border: 1px solid black;
+           border-collapse:collapse;
+           padding:5px;}
+        </style>
     </head>
 
     <body>
-        <img src="{% static "logo.jpg" %}" alt="Alcatel-Lucent logo" />
         <h1>Platforms</h1>
-        <strong>{{ boldmessage }}</strong><br />
-        <a href="/platforms/about/">About</a><br />
-    </body>
+        {% if platforms %}
+          <table>
+            <tr>
+              <th>Name</th>
+              <th>OT</th>
+              <th>OXE</th>
+            </tr>
+            {% for platform in platforms %}
+                <tr>
+                  <td>{{ platform.name }}</td>
+                  <td>{{ platform.ot_ip }}</td>
+                  <td>{{ platform.oxe_ip }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        {% else %}
+             <strong>There are no platforms present.</strong><br />
+        {% endif %}
+        <br />
+       <a href="/platforms/devices/">Devices</a><br />
+       <a href="/platforms/about/">About</a><br />
 
+    </body>
 </html>
