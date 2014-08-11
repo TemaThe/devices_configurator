@@ -33,9 +33,25 @@
         {% else %}
              <strong>There are no platforms present.</strong><br />
         {% endif %}
+        <h3>Add a platform</h3>
+        <form id="platform_form" method="post" action="/platforms/">
+
+            {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+                {{ field.errors }}
+                {{ field.help_text }}
+                {{ field }}
+            {% endfor %}
+            <br />
+            <input type="submit" name="submit" value="Create Platform" />
         <br />
        <a href="/platforms/devices/">Devices</a><br />
        <a href="/platforms/about/">About</a><br />
+        <a href="/platforms/add_platform/">Add a New Platform</a>
 
     </body>
 </html>
