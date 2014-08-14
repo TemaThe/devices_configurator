@@ -14,25 +14,28 @@
     </head>
 
     <body>
-        <h1>Platforms</h1>
+        <h1>Platforms  <a href="/platforms/devices/">Devices</a></h1>
         {% if platforms %}
           <table>
             <tr>
               <th>Name</th>
               <th>OT</th>
               <th>OXE</th>
+                <th>Location</th>
             </tr>
             {% for platform in platforms %}
                 <tr>
                   <td>{{ platform.name }}</td>
                   <td>{{ platform.ot_ip }}</td>
                   <td>{{ platform.oxe_ip }}</td>
+                  <td>{{ platform.location }}</td>
                 </tr>
             {% endfor %}
             </table>
         {% else %}
              <strong>There are no platforms present.</strong><br />
         {% endif %}
+
         <h3>Add a platform</h3>
         <form id="platform_form" method="post" action="/platforms/">
 
@@ -40,18 +43,20 @@
             {% for hidden in form.hidden_fields %}
                 {{ hidden }}
             {% endfor %}
-
+            <table>
             {% for field in form.visible_fields %}
                 {{ field.errors }}
-                {{ field.help_text }}
-                {{ field }}
+                <tr>
+                <td>{{ field.help_text }}</td>
+                <td>{{ field }}</td>
+                    </tr>
             {% endfor %}
-            <br />
+</table>
             <input type="submit" name="submit" value="Create Platform" />
-        <br />
-       <a href="/platforms/devices/">Devices</a><br />
+
+                <br />
+
        <a href="/platforms/about/">About</a><br />
-        <a href="/platforms/add_platform/">Add a New Platform</a>
 
     </body>
 </html>
