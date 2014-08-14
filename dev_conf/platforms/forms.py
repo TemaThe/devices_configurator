@@ -22,3 +22,16 @@ class DeviceForm(forms.ModelForm):
 
     class Meta:
         model = Device
+
+
+class DeviceTransferForm(forms.Form):
+    devices = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
+                                      label="Transfer this device")
+
+
+class PlatformTransferForm(forms.ModelForm):
+    platform = forms.ModelChoiceField(help_text="Platform", queryset=Platform.objects.all())
+
+    class Meta:
+        model = Device
+        fields = ['platform']
